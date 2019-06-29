@@ -7,16 +7,19 @@ import java.util.Random;
 /**
  * @author Jerry Lee (oldratlee at gmail dot com)
  * @see <a href="http://coolshell.cn/articles/9606.html">Java HashMap的死循环</a>@<a href="http://weibo.com/haoel">左耳朵耗子</a>
+ * https://coolshell.cn/articles/9606.html
  */
 public class HashMapHangDemo {
     final Map<Integer, Object> holder = new HashMap<Integer, Object>();
 
     public static void main(String[] args) {
         HashMapHangDemo demo = new HashMapHangDemo();
+        //主线程
         for (int i = 0; i < 100; i++) {
             demo.holder.put(i, null);
         }
 
+        //创建两个子线程进行put
         Thread thread = new Thread(demo.getConcurrencyCheckTask());
         thread.start();
         thread = new Thread(demo.getConcurrencyCheckTask());

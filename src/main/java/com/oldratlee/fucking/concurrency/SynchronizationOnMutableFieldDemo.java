@@ -38,7 +38,8 @@ public class SynchronizationOnMutableFieldDemo {
     }
 
     public void addListener(Listener listener) {
-        synchronized (listeners) {
+        synchronized (listener) {
+//        synchronized (SynchronizationOnMutableFieldDemo.class) {
             List<Listener> results = new ArrayList<Listener>(listeners);
             results.add(listener);
             listeners = results;

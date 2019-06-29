@@ -9,6 +9,7 @@ import com.oldratlee.fucking.concurrency.util.Utils;
  * @see <a href="http://hllvm.group.iteye.com/group/topic/34932">请问R大 有没有什么工具可以查看正在运行的类的c/汇编代码</a>
  */
 public class NoPublishDemo {
+//    volatile boolean stop = false;
     boolean stop = false;
 
     public static void main(String[] args) {

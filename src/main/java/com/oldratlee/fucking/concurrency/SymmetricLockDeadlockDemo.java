@@ -2,6 +2,7 @@ package com.oldratlee.fucking.concurrency;
 
 /**
  * @author Jerry Lee (oldratlee at gmail dot com)
+ * 死锁
  */
 public class SymmetricLockDeadlockDemo {
     static final Object lock1 = new Object();

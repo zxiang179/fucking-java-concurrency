@@ -2,6 +2,7 @@ package com.oldratlee.fucking.concurrency;
 
 /**
  * @author Jerry Lee (oldratlee at gmail dot com)
+ * 非原子变量的读
  */
 public class InconsistentReadDemo {
     int count = 1;

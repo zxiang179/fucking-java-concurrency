@@ -1,12 +1,15 @@
 package com.oldratlee.fucking.concurrency;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author Jerry Lee (oldratlee at gmail dot com)
  */
 public class WrongCounterDemo {
     private static final int INC_COUNT = 100000000;
 
-    volatile int counter = 0;
+//    volatile int counter = 0;
+    volatile AtomicInteger counter = new AtomicInteger(0);
 
     public static void main(String[] args) throws Exception {
         WrongCounterDemo demo = new WrongCounterDemo();
@@ -20,7 +23,7 @@ public class WrongCounterDemo {
         thread1.join();
         thread2.join();
 
-        int actualCounter = demo.counter;
+        int actualCounter = demo.counter.get();
         int expectedCount = INC_COUNT * 2;
         if (actualCounter != expectedCount) {
             // 在我的开发机上，几乎必现！即使counter上加了volatile。（简单安全的解法：使用AtomicInteger）
@@ -38,7 +41,10 @@ public class WrongCounterDemo {
         @Override
         public void run() {
             for (int i = 0; i < INC_COUNT; ++i) {
-                ++counter;
+//                synchronized (WrongCounterDemo.class){
+//                    ++counter;
+                    counter.incrementAndGet();
+//                }
             }
         }
     }
